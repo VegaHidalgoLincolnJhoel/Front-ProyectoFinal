@@ -1,0 +1,243 @@
+/* Contenedor Principal */
+.usuarios-view {
+  padding: 2rem;
+  background-color: #f9fafb;
+  min-height: 100vh;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* Cabecera */
+.usuarios-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.header-titles h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0 0 0.25rem 0;
+}
+
+.header-titles span {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+/* Botones */
+.btn-primary {
+  background-color: #4f46e5;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background-color 0.2s;
+}
+
+.btn-primary:hover {
+  background-color: #4338ca;
+}
+
+.btn-primary svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.btn-outline {
+  background-color: transparent;
+  border: 1px solid #d1d5db;
+  color: #374151;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.btn-outline:hover {
+  background-color: #f3f4f6;
+}
+
+/* Tarjeta Principal */
+.usuarios-card {
+  background-color: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+/* Barra de Filtros */
+.filtros-bar {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.filtros-izq, .filtros-der {
+  display: flex;
+  gap: 1rem;
+}
+
+.search-box {
+  position: relative;
+  width: 250px;
+}
+
+.search-box svg {
+  position: absolute;
+  left: 0.75rem;
+  top: 0.6rem;
+  width: 1rem;
+  height: 1rem;
+  color: #9ca3af;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 0.5rem 1rem 0.5rem 2.25rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  box-sizing: border-box;
+}
+
+.select-rol {
+  padding: 0.5rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  background-color: white;
+}
+
+/* Tabla */
+.tabla-container {
+  overflow-x: auto;
+}
+
+.usuarios-tabla {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.usuarios-tabla th {
+  padding: 1rem 1.5rem;
+  background-color: #f9fafb;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #6b7280;
+  text-transform: uppercase;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.usuarios-tabla td {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 0.875rem;
+}
+
+.usuarios-tabla tbody tr:hover {
+  background-color: #f9fafb;
+}
+
+/* Elementos de la Tabla */
+.col-nombre {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.avatar {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.avatar-purple { background-color: #f3e8ff; color: #7e22ce; }
+.avatar-orange { background-color: #ffedd5; color: #c2410c; }
+.avatar-gray { background-color: #f3f4f6; color: #4b5563; }
+
+.nombre-texto {
+  font-weight: 500;
+  color: #1f2937;
+}
+
+.col-correo {
+  color: #6b7280;
+}
+
+.badge-rol {
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.375rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.badge-admin { background-color: #e0e7ff; color: #4338ca; }
+.badge-default { background-color: #f3f4f6; color: #4b5563; }
+
+.col-estado {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #4b5563;
+}
+
+.dot-estado {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+}
+
+.dot-activo { background-color: #10b981; }
+.dot-inactivo { background-color: #9ca3af; }
+
+/* Paginación */
+.paginacion {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  font-size: 0.875rem;
+  color: #4b5563;
+}
+
+.paginacion-controles {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.page-btn {
+  padding: 0.25rem 0.75rem;
+  border: 1px solid #e5e7eb;
+  background-color: white;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+.page-btn.active {
+  background-color: #4f46e5;
+  color: white;
+  border-color: #4f46e5;
+}
+
+.page-dots {
+  padding: 0.25rem 0.5rem;
+}
+
+.text-right {
+  text-align: right;
+}

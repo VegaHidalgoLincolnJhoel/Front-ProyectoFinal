@@ -8,20 +8,25 @@ export default function PrincipalView() {
 
       <div className="metrics-grid">
         <div className="card metric-card">
-          <span>Total Inscritos</span>
+          <span>Alumnos inscritos</span>
           <h3>4,285</h3>
           <small className="positive">+12% desde el mes pasado</small>
         </div>
         <div className="card metric-card">
-          <span>Cursos Activos</span>
-          <h3>34</h3>
-          <small>En 5 ubicaciones</small>
+          <span>Profesores activos</span>
+          <h3>12</h3>
         </div>
         <div className="card metric-card">
-          <span>Asistencia de Hoy</span>
-          <h3>92.4%</h3>
-          <small className="negative">-1.2% vs promedio</small>
+          <span>Cursos activados</span>
+          <h3>45</h3>
         </div>
+        <div className="card metric-card">
+        <span>Incidentes por atender</span>
+        <h3>10</h3>
+        </div>
+      </div>
+      <div>
+        
       </div>
 
       <div className="details-grid">
