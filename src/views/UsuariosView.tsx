@@ -110,9 +110,11 @@ export default function UsuariosView() {
                     </span>
                   </td>
                   <td className="col-estado">
-                    <span className={`dot-estado ${user.estado === 'Activo' ? 'dot-activo' : 'dot-inactivo'}`}></span>
-                    {user.estado}
-                  </td>
+                   <div className="estado-container">
+                     <span className={`dot-estado ${user.estado === 'Activo' ? 'dot-activo' : 'dot-inactivo'}`}></span>
+                       <span>{user.estado}</span>
+                   </div>
+                    </td> 
                   <td className="text-right">
                     <button className="btn-outline" style={{ padding: '0.2rem 0.5rem' }}>⋮</button>
                   </td>

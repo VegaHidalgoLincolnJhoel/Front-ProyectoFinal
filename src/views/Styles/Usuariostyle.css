@@ -117,7 +117,7 @@
   background-color: white;
 }
 
-/* Tabla */
+/* Tabla - Estructura y Alineación Vertical Correcta */
 .tabla-container {
   overflow-x: auto;
 }
@@ -128,20 +128,28 @@
   text-align: left;
 }
 
+.usuarios-tabla tr {
+  height: 1px; /* Fuerza alto uniforme para centrar elementos internos */
+}
+
 .usuarios-tabla th {
-  padding: 1rem 1.5rem;
+  padding: 1rem 1rem;
   background-color: #f9fafb;
   font-size: 0.75rem;
   font-weight: 600;
   color: #6b7280;
   text-transform: uppercase;
   border-bottom: 1px solid #e5e7eb;
+  vertical-align: middle !important;
+  white-space: nowrap;
 }
 
 .usuarios-tabla td {
-  padding: 1rem 1.5rem;
+  padding: 0.85rem 1rem;
   border-bottom: 1px solid #e5e7eb;
   font-size: 0.875rem;
+  vertical-align: middle !important; /* Centra el contenido en todas las celdas */
+  white-space: nowrap;
 }
 
 .usuarios-tabla tbody tr:hover {
@@ -150,20 +158,22 @@
 
 /* Elementos de la Tabla */
 .col-nombre {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 0.75rem;
+  vertical-align: middle;
 }
 
 .avatar {
   width: 2rem;
   height: 2rem;
   border-radius: 50%;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   font-size: 0.75rem;
   font-weight: 700;
+  flex-shrink: 0;
 }
 
 .avatar-purple { background-color: #f3e8ff; color: #7e22ce; }
@@ -180,6 +190,7 @@
 }
 
 .badge-rol {
+  display: inline-block;
   padding: 0.25rem 0.5rem;
   border-radius: 0.375rem;
   font-size: 0.75rem;
@@ -189,17 +200,26 @@
 .badge-admin { background-color: #e0e7ff; color: #4338ca; }
 .badge-default { background-color: #f3f4f6; color: #4b5563; }
 
+/* Celda y Contenedor de Estado */
 .col-estado {
-  display: flex;
+  vertical-align: middle !important;
+  color: #4b5563;
+}
+
+.col-estado > span,
+.estado-container {
+  display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  color: #4b5563;
+  vertical-align: middle;
 }
 
 .dot-estado {
   width: 0.5rem;
   height: 0.5rem;
   border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
 }
 
 .dot-activo { background-color: #10b981; }
