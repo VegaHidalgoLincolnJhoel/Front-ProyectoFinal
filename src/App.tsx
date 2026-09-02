@@ -1,10 +1,9 @@
 import { useState } from 'react';
-import Sidebar from './components/Sidebar';
+import { Sidebar } from './components/Sidebar';
 import Header from './components/Header';
 import PrincipalView from './views/PrincipalView';
-import CursosView from './views/CursosView';
+import { CursosView } from './views/CursosView'; // 👈 Cambiado a import nombrado
 import ProgramacionView from './views/ProgramacionView';
-import AsistenciaView from './views/AsistenciaView';
 import PerfilView from './views/PerfilView';
 import UsuariosView from './views/UsuariosView';
 
@@ -17,7 +16,6 @@ export default function App() {
       case 'usuarios': return <UsuariosView />;
       case 'cursos': return <CursosView />;
       case 'programacion': return <ProgramacionView />;
-      case 'asistencia': return <AsistenciaView />;
       case 'perfil': return <PerfilView />;
       default: return <PrincipalView />;
     }
@@ -25,7 +23,8 @@ export default function App() {
 
   return (
     <div className="app-container">
-      <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
+      {/* 👈 Se cambió setActiveTab por setVistaActual para que encaje con el Sidebar */}
+      <Sidebar vistaActual={activeTab} setVistaActual={setActiveTab} />
       <div className="main-wrapper">
         <Header />
         <main className="content">{renderView()}</main>
