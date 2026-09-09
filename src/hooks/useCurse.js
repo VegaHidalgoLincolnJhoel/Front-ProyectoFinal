@@ -9,8 +9,8 @@ const mockCourses = [
     area: "Ciencias Exactas (UNI / SM)",
     docente: "Prof. Carmen Rosa Herrera",
     horario: "Lunes y Miércoles 08:00 - 10:00 AM",
-    sala: "Zoom Activo",
-    tipoSala: "zoom",
+    sala: "Meet Activo",
+    tipoSala: "meet",
     repositorio: "drive.google.com/mat101",
     estado: "Activo"
   },
@@ -35,8 +35,8 @@ const mockCourses = [
     area: "Ciencias Médicas (UNMSM)",
     docente: "Dra. Elena Torres",
     horario: "Lunes y Viernes 03:00 - 05:00 PM",
-    sala: "Zoom Sala B",
-    tipoSala: "zoom",
+    sala: "Meet Sala B",
+    tipoSala: "meet",
     repositorio: "campus.pre.pe/bio",
     estado: "Activo"
   },
@@ -61,12 +61,25 @@ const mockCourses = [
     area: "Humanidades y Letras",
     docente: "Lic. Valeria Quispe",
     horario: "Sábados 08:00 - 12:00 PM",
-    sala: "Zoom Sala D",
-    tipoSala: "zoom",
+    sala: "Meet Sala D",
+    tipoSala: "meet",
     repositorio: "campus.pre.pe/lenguaje",
     estado: "Activo"
   },
 ];
+
+export const createInitialCourseForm = () => ({
+  codigo: "",
+  aula: "",
+  asignatura: "",
+  area: "Ciencias Exactas",
+  docente: "",
+  horario: "",
+  sala: "Meet Sala A",
+  tipoSala: "meet",
+  repositorio: "",
+  estado: "Activo"
+});
 
 export default function useCurse() {
   const [courses, setCourses] = useState([]);
@@ -75,5 +88,14 @@ export default function useCurse() {
     setCourses(mockCourses);
   }, []);
 
-  return { courses };
+  const addCourse = (courseData) => {
+    const newCourse = {
+      id: `CRS-${String(courses.length + 1).padStart(3, "0")}`,
+      ...courseData
+    };
+
+    setCourses((currentCourses) => [newCourse, ...currentCourses]);
+  };
+
+  return { courses, addCourse };
 }

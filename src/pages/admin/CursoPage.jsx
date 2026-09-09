@@ -10,12 +10,27 @@ import {
   FolderOpen 
 } from "lucide-react";
 import useCurse from "../../hooks/useCurse";
+import { createInitialCourseForm } from "../../hooks/useCurse";
+import CourseFormModal from "../../components/admin/CourseFormModal";
 
 export default function CursoPage() {
-  const { courses } = useCurse();
+  const { courses, addCourse } = useCurse();
   const [searchTerm, setSearchTerm] = useState("");
   const [areaFilter, setAreaFilter] = useState("Todas las Áreas Académicas");
   const [statusFilter, setStatusFilter] = useState("Todos los Estados");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [formData, setFormData] = useState(createInitialCourseForm);
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setFormData(createInitialCourseForm());
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    addCourse(formData);
+    closeModal();
+  };
 
   // Lógica simple de filtrado
   const filteredCourses = courses.filter((curso) => {
@@ -56,6 +71,7 @@ export default function CursoPage() {
             </button>
             <button
               type="button"
+              onClick={() => setIsModalOpen(true)}
               className="inline-flex items-center space-x-2 px-4 py-2 bg-[#1E3A8A] text-white hover:bg-blue-800 rounded-lg text-xs font-semibold shadow-xs transition-colors cursor-pointer"
             >
               <Plus className="w-4 h-4 text-white" />
@@ -167,7 +183,7 @@ export default function CursoPage() {
                   title="Acceder como Host/Co-host"
                 >
                   <Video className="w-4 h-4" />
-                  Monitorear Sala ({curso.tipoSala === 'zoom' ? 'Zoom' : 'Meet'})
+                  Monitorear Sala 
                 </button>
                 
                 <div className="grid grid-cols-2 gap-3">
@@ -194,6 +210,15 @@ export default function CursoPage() {
           </div>
         )}
       </div>
+
+      {isModalOpen && (
+        <CourseFormModal
+          formData={formData}
+          onChange={setFormData}
+          onSubmit={handleSubmit}
+          onClose={closeModal}
+        />
+      )}
     </div>
   );
 }

@@ -104,7 +104,7 @@ export default function ControlAsistenciasPage() {
                             <span className="text-xl font-extrabold text-slate-800">12 / 12 salas</span>
                             <ShieldCheck className="w-5 h-5 text-emerald-600" />
                         </div>
-                        <span className="text-[11px] text-emerald-600 font-medium mt-1 block">Zoom & Meet sincronizados</span>
+                        <span className="text-[11px] text-emerald-600 font-medium mt-1 block"> Meet sincronizado</span>
                     </div>
 
                     <div className="bg-amber-50/70 p-4 rounded-xl border border-amber-200">
