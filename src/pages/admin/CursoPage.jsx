@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { 
   Search, 
   RefreshCcw, 
@@ -10,15 +10,33 @@ import {
   FolderOpen 
 } from "lucide-react";
 import useCurse from "../../hooks/useCurse";
+import CursoRegistroModal from "../../components/admin/CursoRegistroModal";
 
 export default function CursoPage() {
-  const { courses } = useCurse();
+  const { courses: initialCourses } = useCurse();
+  const [coursesList, setCoursesList] = useState([]);
+  
   const [searchTerm, setSearchTerm] = useState("");
   const [areaFilter, setAreaFilter] = useState("Todas las Áreas Académicas");
   const [statusFilter, setStatusFilter] = useState("Todos los Estados");
 
-  // Lógica simple de filtrado
-  const filteredCourses = courses.filter((curso) => {
+  // Estado para controlar el modal de registro
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // Inicializar el estado de cursos desde el hook o datos base
+  useEffect(() => {
+    if (initialCourses && initialCourses.length > 0) {
+      setCoursesList(initialCourses);
+    }
+  }, [initialCourses]);
+
+  // Agregar nuevo curso a la lista en tiempo real
+  const handleAddCourse = (newCourse) => {
+    setCoursesList((prevList) => [newCourse, ...prevList]);
+  };
+
+  // Filtrado dinámico
+  const filteredCourses = coursesList.filter((curso) => {
     const matchesSearch = curso.asignatura.toLowerCase().includes(searchTerm.toLowerCase()) || 
                           curso.docente.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesArea = areaFilter === "Todas las Áreas Académicas" || curso.area.includes(areaFilter);
@@ -56,6 +74,7 @@ export default function CursoPage() {
             </button>
             <button
               type="button"
+              onClick={() => setIsModalOpen(true)}
               className="inline-flex items-center space-x-2 px-4 py-2 bg-[#1E3A8A] text-white hover:bg-blue-800 rounded-lg text-xs font-semibold shadow-xs transition-colors cursor-pointer"
             >
               <Plus className="w-4 h-4 text-white" />
@@ -160,7 +179,7 @@ export default function CursoPage() {
                 </p>
               </div>
 
-              {/* Botones de Acción (Perfil Administrador) */}
+              {/* Botones de Acción */}
               <div className="space-y-3 mt-auto pt-2 border-t border-slate-100">
                 <button 
                   className="w-full bg-[#0F9D58] hover:bg-emerald-700 text-white font-medium py-2.5 rounded-lg flex items-center justify-center gap-2 text-sm transition-colors shadow-sm cursor-pointer"
@@ -194,6 +213,13 @@ export default function CursoPage() {
           </div>
         )}
       </div>
+
+      {/* COMPONENTE MODAL MODULARIZADO */}
+      <CursoRegistroModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onAddCourse={handleAddCourse}
+      />
     </div>
   );
 }
