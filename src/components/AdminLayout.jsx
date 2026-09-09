@@ -31,13 +31,13 @@ export default function AdminLayout() {
   };
 
   const navItems = [
-    { name: "Gestión de Usuarios", path: "/admin/usuarios", icon: Users, active: true },
-    { name: "Cursos y Materias", path: "#", icon: BookOpen, active: false, badge: "Pronto" },
-    { name: "Horarios y Salones", path: "#", icon: Calendar, active: false },
-    { name: "Control de Asistencias", path: "#", icon: ClipboardCheck, active: false },
-    { name: "Matrículas y Pagos", path: "#", icon: CreditCard, active: false },
-    { name: "Métricas y Reportes", path: "#", icon: BarChart3, active: false },
-    { name: "Configuración", path: "#", icon: Settings, active: false },
+    { name: "Gestión de Usuarios", path: "/admin/usuarios", icon: Users },
+    { name: "Cursos y Materias", path: "/admin/cursos", icon: BookOpen },
+    { name: "Horarios y Salones", path: null, icon: Calendar },
+    { name: "Control de Asistencias", path: "/admin/incidentes", icon: ClipboardCheck },
+    { name: "Matrículas y Pagos", path: null, icon: CreditCard },
+    { name: "Métricas y Reportes", path: null, icon: BarChart3 },
+    { name: "Configuración", path: null, icon: Settings },
   ];
 
   return (
@@ -67,19 +67,25 @@ export default function AdminLayout() {
             </div>
             {navItems.map((item) => {
               const Icon = item.icon;
-              return item.active ? (
+              return item.path ? (
                 <NavLink
                   key={item.name}
                   to={item.path}
-                  className="flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-medium bg-blue-800 text-white shadow-xs border-l-4 border-amber-400"
+                  className={({ isActive }) => `flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${
+                    isActive
+                      ? "bg-blue-800 text-white shadow-xs border-l-4 border-amber-400"
+                      : "text-blue-100 hover:bg-blue-800/50 hover:text-white"
+                  }`}
                 >
                   <div className="flex items-center space-x-3">
                     <Icon className="w-4 h-4 text-amber-300" />
                     <span>{item.name}</span>
                   </div>
-                  <span className="text-[10px] bg-amber-400 text-blue-950 font-bold px-1.5 py-0.5 rounded">
-                    SCRM-4
-                  </span>
+                  {item.path === "/admin/usuarios" && (
+                    <span className="text-[10px] bg-amber-400 text-blue-950 font-bold px-1.5 py-0.5 rounded">
+                      SCRM-4
+                    </span>
+                  )}
                 </NavLink>
               ) : (
                 <div
@@ -147,7 +153,21 @@ export default function AdminLayout() {
             onClick={() => setMobileMenuOpen(false)}
             className="block px-3 py-2 rounded bg-blue-800 text-sm font-medium"
           >
-            Gestión de Usuarios (SCRM-4)
+            Gestión de Usuarios 
+          </NavLink>
+          <NavLink
+            to="/admin/cursos"
+            onClick={() => setMobileMenuOpen(false)}
+            className="block px-3 py-2 rounded bg-blue-800 text-sm font-medium"
+          >
+            Cursos y Materias
+          </NavLink>
+          <NavLink
+            to="/admin/incidentes"
+            onClick={() => setMobileMenuOpen(false)}
+            className="block px-3 py-2 rounded bg-blue-800 text-sm font-medium"
+          >
+            Control de Asistencias
           </NavLink>
           <button
             onClick={handleLogout}
