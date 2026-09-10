@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+<<<<<<< HEAD
 
 const mockCourses = [
   {
@@ -67,6 +68,9 @@ const mockCourses = [
     estado: "Activo"
   },
 ];
+=======
+import { courseService } from "../services/api";
+>>>>>>> origin/Feature-Valentino
 
 export const createInitialCourseForm = () => ({
   codigo: "",
@@ -85,7 +89,7 @@ export default function useCurse() {
   const [courses, setCourses] = useState([]);
 
   useEffect(() => {
-    setCourses(mockCourses);
+    setCourses(courseService.getCourses());
   }, []);
 
   const addCourse = (courseData) => {

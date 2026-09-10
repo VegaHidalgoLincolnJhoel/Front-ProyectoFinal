@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+<<<<<<< HEAD
 
 export const initialTeacherIncidents = [
   {
@@ -59,25 +60,28 @@ export const getStoredIncidents = () => {
 export const saveStoredIncidents = (incidents) => {
   localStorage.setItem("academia_teacher_incidents", JSON.stringify(incidents));
 };
+=======
+import { incidentService } from "../services/api";
+>>>>>>> origin/Feature-Valentino
 
 export default function useTeacherIncidents() {
   const [incidents, setIncidents] = useState([]);
 
   useEffect(() => {
-    setIncidents(getStoredIncidents());
+    setIncidents(incidentService.getIncidents());
   }, []);
 
   const updateIncidentStatus = (id, newStatus) => {
-    const updated = incidents.map((inc) => 
+    const updated = incidents.map((inc) =>
       inc.id === id ? { ...inc, estado: newStatus } : inc
     );
     setIncidents(updated);
-    saveStoredIncidents(updated);
+    incidentService.saveIncidents(updated);
   };
 
   const resetIncidents = () => {
-    saveStoredIncidents(initialTeacherIncidents);
-    setIncidents(initialTeacherIncidents);
+    const initial = incidentService.resetIncidents();
+    setIncidents(initial);
   };
 
   return { incidents, updateIncidentStatus, resetIncidents };

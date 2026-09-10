@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { 
   Search, 
   RefreshCcw, 
@@ -10,11 +10,20 @@ import {
   FolderOpen 
 } from "lucide-react";
 import useCurse from "../../hooks/useCurse";
+<<<<<<< HEAD
 import { createInitialCourseForm } from "../../hooks/useCurse";
 import CourseFormModal from "../../components/admin/CourseFormModal";
 
 export default function CursoPage() {
   const { courses, addCourse } = useCurse();
+=======
+import CursoRegistroModal from "../../components/admin/CursoRegistroModal";
+
+export default function CursoPage() {
+  const { courses: initialCourses } = useCurse();
+  const [coursesList, setCoursesList] = useState([]);
+  
+>>>>>>> origin/Feature-Valentino
   const [searchTerm, setSearchTerm] = useState("");
   const [areaFilter, setAreaFilter] = useState("Todas las Áreas Académicas");
   const [statusFilter, setStatusFilter] = useState("Todos los Estados");
@@ -32,8 +41,23 @@ export default function CursoPage() {
     closeModal();
   };
 
-  // Lógica simple de filtrado
-  const filteredCourses = courses.filter((curso) => {
+  // Estado para controlar el modal de registro
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // Inicializar el estado de cursos desde el hook o datos base
+  useEffect(() => {
+    if (initialCourses && initialCourses.length > 0) {
+      setCoursesList(initialCourses);
+    }
+  }, [initialCourses]);
+
+  // Agregar nuevo curso a la lista en tiempo real
+  const handleAddCourse = (newCourse) => {
+    setCoursesList((prevList) => [newCourse, ...prevList]);
+  };
+
+  // Filtrado dinámico
+  const filteredCourses = coursesList.filter((curso) => {
     const matchesSearch = curso.asignatura.toLowerCase().includes(searchTerm.toLowerCase()) || 
                           curso.docente.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesArea = areaFilter === "Todas las Áreas Académicas" || curso.area.includes(areaFilter);
@@ -176,7 +200,7 @@ export default function CursoPage() {
                 </p>
               </div>
 
-              {/* Botones de Acción (Perfil Administrador) */}
+              {/* Botones de Acción */}
               <div className="space-y-3 mt-auto pt-2 border-t border-slate-100">
                 <button 
                   className="w-full bg-[#0F9D58] hover:bg-emerald-700 text-white font-medium py-2.5 rounded-lg flex items-center justify-center gap-2 text-sm transition-colors shadow-sm cursor-pointer"
@@ -211,6 +235,7 @@ export default function CursoPage() {
         )}
       </div>
 
+<<<<<<< HEAD
       {isModalOpen && (
         <CourseFormModal
           formData={formData}
@@ -219,6 +244,14 @@ export default function CursoPage() {
           onClose={closeModal}
         />
       )}
+=======
+      {/* COMPONENTE MODAL MODULARIZADO */}
+      <CursoRegistroModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onAddCourse={handleAddCourse}
+      />
+>>>>>>> origin/Feature-Valentino
     </div>
   );
 }

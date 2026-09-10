@@ -1,49 +1,50 @@
-import { Filter, Search } from "lucide-react";
+import { Search, Filter } from "lucide-react";
 
 export default function UserFilters({
   searchTerm,
   roleFilter,
   statusFilter,
+  roles = [],
   onSearchChange,
   onRoleChange,
   onStatusChange
 }) {
   return (
-    <div className="mt-5 grid grid-cols-1 md:grid-cols-12 gap-3 pt-4 border-t border-slate-100">
-      <div className="md:col-span-6 relative">
-        <Search className="w-4 h-4 text-slate-400 absolute left-3 top-2.5" />
+    <div className="flex flex-col md:flex-row items-center gap-3 mt-4 pt-4 border-t border-slate-100">
+      <div className="relative flex-1 w-full">
+        <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
         <input
           type="text"
           value={searchTerm}
-          onChange={(event) => onSearchChange(event.target.value)}
+          onChange={(e) => onSearchChange(e.target.value)}
           placeholder="Buscar por apellidos, nombres, DNI, carrera o correo..."
-          className="w-full pl-9 pr-4 py-2 text-xs border border-slate-200 rounded-lg bg-slate-50 focus:bg-white focus:outline-hidden focus:border-[#1E3A8A] focus:ring-1 focus:ring-[#1E3A8A] transition-all"
+          className="w-full pl-9 pr-4 py-2 border border-slate-200 rounded-lg text-xs focus:outline-hidden focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
         />
       </div>
 
-      <div className="md:col-span-3 flex items-center space-x-2">
-        <Filter className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+      <div className="flex items-center gap-2 w-full md:w-auto">
+        <Filter className="w-4 h-4 text-slate-400 hidden sm:block" />
         <select
           value={roleFilter}
-          onChange={(event) => onRoleChange(event.target.value)}
-          className="w-full py-2 px-3 text-xs border border-slate-200 rounded-lg bg-slate-50 focus:bg-white focus:outline-hidden focus:border-[#1E3A8A] cursor-pointer"
+          onChange={(e) => onRoleChange(e.target.value)}
+          className="w-full md:w-auto px-3 py-2 border border-slate-200 rounded-lg text-xs bg-white text-slate-700 font-medium focus:outline-hidden focus:ring-2 focus:ring-blue-500 cursor-pointer"
         >
           <option value="TODOS">Todos los Roles</option>
-          <option value="Admin">Admin</option>
-          <option value="Docente">Docente</option>
-          <option value="Estudiante">Estudiante</option>
+          {roles.map((rol) => (
+            <option key={rol} value={rol}>
+              {rol}
+            </option>
+          ))}
         </select>
-      </div>
 
-      <div className="md:col-span-3">
         <select
           value={statusFilter}
-          onChange={(event) => onStatusChange(event.target.value)}
-          className="w-full py-2 px-3 text-xs border border-slate-200 rounded-lg bg-slate-50 focus:bg-white focus:outline-hidden focus:border-[#1E3A8A] cursor-pointer"
+          onChange={(e) => onStatusChange(e.target.value)}
+          className="w-full md:w-auto px-3 py-2 border border-slate-200 rounded-lg text-xs bg-white text-slate-700 font-medium focus:outline-hidden focus:ring-2 focus:ring-blue-500 cursor-pointer"
         >
           <option value="TODOS">Todos los Estados</option>
-          <option value="Activo">Solo Activos</option>
-          <option value="Inactivo">Solo Inactivos</option>
+          <option value="Activo">Activo</option>
+          <option value="Inactivo">Inactivo</option>
         </select>
       </div>
     </div>
