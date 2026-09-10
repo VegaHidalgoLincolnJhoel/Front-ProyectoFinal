@@ -4,8 +4,10 @@ import Login from "./pages/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
 import AdminLayout from "./components/AdminLayout";
 import AdminUsersPage from "./pages/admin/AdminUsersPage";
+import CursoPage from "./pages/admin/CursoPage";
 import StudentLayout from "./components/StudentLayout";
 import StudentDashboardPage from "./pages/student/StudentDashboardPage";
+import ControlAsistenciasPage from "./pages/admin/ControIncidenciasPage";
 
 export default function App() {
   return (
@@ -35,6 +37,8 @@ export default function App() {
         <Route path="/admin" element={<AdminLayout />}>
           <Route index element={<Navigate to="/admin/usuarios" replace />} />
           <Route path="usuarios" element={<AdminUsersPage />} />
+          <Route path="cursos" element={<CursoPage />} />
+          <Route path="incidentes" element= {<ControlAsistenciasPage/>} />
         </Route>
       </Route>
 

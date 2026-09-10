@@ -1,5 +1,9 @@
 import React, { useState } from "react";
-import { studentCourses, studentAttendance } from "../../data/mockStudentData";
+import db from "../../data/db.json";
+
+const studentCourses = db.studentCourses;
+const studentAttendance = db.studentAttendance;
+
 import {
   Video,
   Clock,
