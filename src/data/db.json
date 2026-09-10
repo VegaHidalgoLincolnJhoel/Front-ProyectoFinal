@@ -1,0 +1,295 @@
+{
+  "users": [
+    {
+      "id": "USR-001",
+      "apellidos": "Flores Mendoza",
+      "nombres": "Juan Carlos",
+      "dni": "74839201",
+      "fechaNacimiento": "2005-04-15",
+      "correo": "j.flores@academia.edu.pe",
+      "celular": "987654321",
+      "carreraObjetivo": "Medicina Humana (UNMSM)",
+      "cicloVirtual": "Anual San Marcos 2026",
+      "rol": "Estudiante",
+      "estado": "Activo"
+    },
+    {
+      "id": "USR-002",
+      "apellidos": "Quispe Alarcón",
+      "nombres": "Valeria Sofía",
+      "dni": "76543210",
+      "fechaNacimiento": "2006-08-22",
+      "correo": "v.quispe@academia.edu.pe",
+      "celular": "912345678",
+      "carreraObjetivo": "Ing. de Sistemas (UNI)",
+      "cicloVirtual": "Semestral Intensivo UNI",
+      "rol": "Estudiante",
+      "estado": "Activo"
+    },
+    {
+      "id": "USR-003",
+      "apellidos": "Morales Salazar",
+      "nombres": "Roberto Carlos",
+      "dni": "41235678",
+      "fechaNacimiento": "1988-11-05",
+      "correo": "r.morales@academia.edu.pe",
+      "celular": "998877665",
+      "carreraObjetivo": "Dirección Académica",
+      "cicloVirtual": "Turno Mañana / Tarde",
+      "rol": "Admin",
+      "estado": "Activo"
+    },
+    {
+      "id": "USR-004",
+      "apellidos": "Herrera Villanueva",
+      "nombres": "Carmen Rosa",
+      "dni": "45678912",
+      "fechaNacimiento": "1990-03-12",
+      "correo": "c.herrera@academia.edu.pe",
+      "celular": "976543210",
+      "carreraObjetivo": "Cátedra de Álgebra",
+      "cicloVirtual": "Todos los ciclos",
+      "rol": "Docente",
+      "estado": "Activo"
+    },
+    {
+      "id": "USR-005",
+      "apellidos": "Torres Cárdenas",
+      "nombres": "Mateo Sebastián",
+      "dni": "78912345",
+      "fechaNacimiento": "2007-01-30",
+      "correo": "m.torres@academia.edu.pe",
+      "celular": "934567891",
+      "carreraObjetivo": "Derecho (PUCP)",
+      "cicloVirtual": "Repaso Especializado",
+      "rol": "Estudiante",
+      "estado": "Inactivo"
+    }
+  ],
+  "roles": [
+    "Estudiante",
+    "Docente",
+    "Administrativo",
+    "Super Admin"
+  ],
+  "incidents": [
+    {
+      "id": "INC-D01",
+      "docente": "Prof. Roberto Morales",
+      "dni": "41235678",
+      "correo": "r.morales@academia.edu.pe",
+      "tipo": "Tardanza (+20 min)",
+      "fechaPresentacion": "Hoy 08:35 AM",
+      "materia": "Física Fundamental (Zoom-02)",
+      "horario": "08:00 a 09:30 AM (Turno Mañana)",
+      "motivo": "Inconvenientes con el proveedor de fibra óptica de la zona y caída imprevista del servicio de Internet residencial a las 08:12 AM.",
+      "archivoNombre": "reporte_tecnico_fibra.pdf",
+      "estado": "Pendiente"
+    },
+    {
+      "id": "INC-D02",
+      "docente": "Mg. Carmen Rosa Herrera",
+      "dni": "45678912",
+      "correo": "c.herrera@academia.edu.pe",
+      "tipo": "Inasistencia Inesperada",
+      "fechaPresentacion": "Hoy 07:45 AM",
+      "materia": "Álgebra y Funciones (Zoom-01)",
+      "horario": "08:00 a 10:00 AM (Turno Mañana)",
+      "motivo": "Emergencia médica odontológica de urgencia por fuerte infección aguda. Adjunto constancia y receta de atención en EsSalud.",
+      "archivoNombre": "constancia_medica_essalud.pdf",
+      "estado": "Pendiente"
+    },
+    {
+      "id": "INC-D03",
+      "docente": "Ing. Carlos Alva",
+      "dni": "42891234",
+      "correo": "c.alva@academia.edu.pe",
+      "tipo": "Tardanza (+15 min)",
+      "fechaPresentacion": "Ayer 03:10 PM",
+      "materia": "Geometría y Trigonometría (Meet-C3)",
+      "horario": "03:00 a 05:00 PM (Turno Tarde)",
+      "motivo": "Demora en el tráfico vehicular al retornar de la sede central hacia el estudio de transmisión virtual.",
+      "archivoNombre": "declaracion_jurada_transito.pdf",
+      "estado": "Pendiente"
+    }
+  ],
+  "courses": [
+    {
+      "id": "CRS-001",
+      "codigo": "MAT-101",
+      "aula": "AULA A-101",
+      "asignatura": "Álgebra y Funciones",
+      "area": "Ciencias Exactas (UNI / SM)",
+      "docente": "Prof. Carmen Rosa Herrera",
+      "horario": "Lunes y Miércoles 08:00 - 10:00 AM",
+      "sala": "Zoom Activo",
+      "tipoSala": "zoom",
+      "repositorio": "drive.google.com/mat101",
+      "estado": "Activo"
+    },
+    {
+      "id": "CRS-002",
+      "codigo": "FIS-202",
+      "aula": "AULA B-204",
+      "asignatura": "Física Fundamental",
+      "area": "Ciencias Exactas (UNI)",
+      "docente": "Prof. Roberto Morales",
+      "horario": "Martes y Jueves 08:00 - 10:00 AM",
+      "sala": "Meet Sala A",
+      "tipoSala": "meet",
+      "repositorio": "campus.pre.pe/fisica",
+      "estado": "Activo"
+    },
+    {
+      "id": "CRS-003",
+      "codigo": "BIO-301",
+      "aula": "AULA C-302",
+      "asignatura": "Biología y Anatomía",
+      "area": "Ciencias Médicas (UNMSM)",
+      "docente": "Dra. Elena Torres",
+      "horario": "Lunes y Viernes 03:00 - 05:00 PM",
+      "sala": "Zoom Sala B",
+      "tipoSala": "zoom",
+      "repositorio": "campus.pre.pe/bio",
+      "estado": "Activo"
+    },
+    {
+      "id": "CRS-004",
+      "codigo": "QUI-104",
+      "aula": "AULA C-105",
+      "asignatura": "Química Orgánica",
+      "area": "Ciencias e Ingeniería",
+      "docente": "Prof. J. Flores",
+      "horario": "Miércoles y Sábados 10:00 - 12:00 PM",
+      "sala": "Meet Sala C",
+      "tipoSala": "meet",
+      "repositorio": "drive.google.com/quimica",
+      "estado": "En Revisión"
+    },
+    {
+      "id": "CRS-005",
+      "codigo": "LENG-101",
+      "aula": "AULA B-108",
+      "asignatura": "Habilidad Verbal y Redacción",
+      "area": "Humanidades y Letras",
+      "docente": "Lic. Valeria Quispe",
+      "horario": "Sábados 08:00 - 12:00 PM",
+      "sala": "Zoom Sala D",
+      "tipoSala": "zoom",
+      "repositorio": "campus.pre.pe/lenguaje",
+      "estado": "Activo"
+    }
+  ],
+  "studentCourses": [
+    {
+      "id": "CRS-01",
+      "materia": "Álgebra y Funciones",
+      "docente": "Mg. Carmen Herrera",
+      "horario": "Lunes y Miércoles 08:00 - 10:00 AM",
+      "aula": "Aula Virtual A-101",
+      "temaActual": "Ecuaciones Cuadráticas y Polinomios",
+      "meetUrl": "https://meet.google.com/abc-defg-hij",
+      "badge": "En curso"
+    },
+    {
+      "id": "CRS-02",
+      "materia": "Razonamiento Verbal",
+      "docente": "Lic. Javier Paredes",
+      "horario": "Martes y Jueves 10:30 - 12:30 PM",
+      "aula": "Aula Virtual B-204",
+      "temaActual": "Comprensión Lectora y Analogías",
+      "meetUrl": "https://meet.google.com/klm-nopq-rst",
+      "badge": "En curso"
+    },
+    {
+      "id": "CRS-03",
+      "materia": "Geometría y Trigonometría",
+      "docente": "Ing. Marco Benítez",
+      "horario": "Lunes y Viernes 02:00 - 04:00 PM",
+      "aula": "Aula Virtual C-102",
+      "temaActual": "Relaciones Métricas y Circunferencia",
+      "meetUrl": "https://meet.google.com/uvw-xyza-bcd",
+      "badge": "En curso"
+    },
+    {
+      "id": "CRS-04",
+      "materia": "Física Preuniversitaria",
+      "docente": "Dra. Elena Delgado",
+      "horario": "Miércoles y Sábado 09:00 - 11:00 AM",
+      "aula": "Laboratorio Virtual F-3",
+      "temaActual": "Cinemática y Dinámica Lineal",
+      "meetUrl": "https://meet.google.com/efg-hijk-lmn",
+      "badge": "En curso"
+    },
+    {
+      "id": "CRS-05",
+      "materia": "Química General e Inorgánica",
+      "docente": "Mg. Daniel Gutiérrez",
+      "horario": "Martes y Viernes 04:30 - 06:30 PM",
+      "aula": "Aula Virtual Q-105",
+      "temaActual": "Estructura Atómica y Tabla Periódica",
+      "meetUrl": "https://meet.google.com/opq-rstu-vwx",
+      "badge": "En curso"
+    },
+    {
+      "id": "CRS-06",
+      "materia": "Habilidad Lógico-Matemática",
+      "docente": "Lic. Andrea Salas",
+      "horario": "Sábados 11:30 - 01:30 PM",
+      "aula": "Aula Virtual H-201",
+      "temaActual": "Orden de Información y Certezas",
+      "meetUrl": "https://meet.google.com/yza-bcde-fgh",
+      "badge": "En curso"
+    }
+  ],
+  "studentAttendance": [
+    {
+      "id": "ATT-001",
+      "fecha": "07/09/2026",
+      "materia": "Álgebra y Funciones",
+      "horaRegistro": "07:58 AM",
+      "estado": "Asistió Puntual",
+      "modalidad": "Virtual en vivo"
+    },
+    {
+      "id": "ATT-002",
+      "fecha": "05/09/2026",
+      "materia": "Habilidad Lógico-Matemática",
+      "horaRegistro": "11:42 AM",
+      "estado": "Tardanza",
+      "modalidad": "Virtual en vivo"
+    },
+    {
+      "id": "ATT-003",
+      "fecha": "04/09/2026",
+      "materia": "Geometría y Trigonometría",
+      "horaRegistro": "01:55 PM",
+      "estado": "Asistió Puntual",
+      "modalidad": "Virtual en vivo"
+    },
+    {
+      "id": "ATT-004",
+      "fecha": "03/09/2026",
+      "materia": "Razonamiento Verbal",
+      "horaRegistro": "10:28 AM",
+      "estado": "Asistió Puntual",
+      "modalidad": "Virtual en vivo"
+    },
+    {
+      "id": "ATT-005",
+      "fecha": "02/09/2026",
+      "materia": "Álgebra y Funciones",
+      "horaRegistro": "08:14 AM",
+      "estado": "Tardanza",
+      "modalidad": "Virtual en vivo"
+    },
+    {
+      "id": "ATT-006",
+      "fecha": "01/09/2026",
+      "materia": "Química General e Inorgánica",
+      "horaRegistro": "04:26 PM",
+      "estado": "Asistió Puntual",
+      "modalidad": "Virtual en vivo"
+    }
+  ]
+}
