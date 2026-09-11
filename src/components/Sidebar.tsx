@@ -1,4 +1,5 @@
 import React from 'react';
+import { Clock, Calendar, Users, BookOpen, Home, User } from 'lucide-react';
 import '../views/Styles/SidebarStyle.css';
 
 interface SidebarProps {
@@ -41,7 +42,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ vistaActual, setVistaActual })
               className={`menu-btn ${vistaActual === 'cursos' ? 'active' : ''}`}
               onClick={() => setVistaActual('cursos')}
             >
-              Cursos
+              Cursos y Materias
             </button>
           </li>
         </ul>
@@ -51,10 +52,10 @@ export const Sidebar: React.FC<SidebarProps> = ({ vistaActual, setVistaActual })
         <ul>
           <li>
             <button
-              className={`menu-btn ${vistaActual === 'programacion' ? 'active' : ''}`}
-              onClick={() => setVistaActual('programacion')}
+              className={`menu-btn ${vistaActual === 'horarios' ? 'active' : ''}`}
+              onClick={() => setVistaActual('horarios')}
             >
-              Programación
+              Horarios y Salones
             </button>
           </li>
         </ul>
