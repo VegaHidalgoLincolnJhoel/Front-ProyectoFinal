@@ -4,7 +4,8 @@ const KEYS = {
   USERS: "academia_users",
   ROLES: "app_roles",
   INCIDENTS: "academia_teacher_incidents",
-  COURSES: "academia_courses"
+  COURSES: "academia_courses",
+  SECTIONS: "academia_sections"
 };
 
 // --- SERVICIO DE USUARIOS ---
@@ -81,4 +82,29 @@ export const courseService = {
 export const studentService = {
   getStudentCourses: () => db.studentCourses,
   getStudentAttendance: () => db.studentAttendance
+};
+
+// --- SERVICIO DE SECCIONES ---
+export const sectionService = {
+  getSections: () => {
+    const saved = localStorage.getItem(KEYS.SECTIONS);
+    if (!saved) {
+      const initialData = db.sections || db.secciones || [];
+      localStorage.setItem(KEYS.SECTIONS, JSON.stringify(initialData));
+      return initialData;
+    }
+    try {
+      return JSON.parse(saved);
+    } catch {
+      return db.sections || db.secciones || [];
+    }
+  },
+  saveSections: (sections) => {
+    localStorage.setItem(KEYS.SECTIONS, JSON.stringify(sections));
+  },
+  resetSections: () => {
+    const initialData = db.sections || db.secciones || [];
+    localStorage.setItem(KEYS.SECTIONS, JSON.stringify(initialData));
+    return initialData;
+  }
 };
