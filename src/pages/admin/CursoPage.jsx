@@ -3,7 +3,6 @@ import {
   Search,
   RefreshCcw,
   Plus,
-  Layers,
   User,
   Clock,
   Video,
@@ -12,7 +11,6 @@ import {
 } from "lucide-react";
 import useCurse from "../../hooks/useCurse";
 import CursoRegistroModal from "../../components/admin/CursoRegistroModal";
-import SeccionesModal from "../../components/admin/SeccionesModal";
 
 export default function CursoPage() {
   const { courses: initialCourses } = useCurse();
@@ -20,8 +18,9 @@ export default function CursoPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [areaFilter, setAreaFilter] = useState("Todas las Áreas Académicas");
   const [statusFilter, setStatusFilter] = useState("Todos los Estados");
+
+  // Estado para controlar el modal de registro de cursos
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isSeccionModalOpen, setIsSeccionModalOpen] = useState(false);
   const [courseToEdit, setCourseToEdit] = useState(null);
 
   // Inicializar el estado de cursos desde el hook o datos base
@@ -72,7 +71,7 @@ export default function CursoPage() {
               </h2>
             </div>
             <p className="text-xs text-slate-500 mt-1">
-              Administración de secciones, monitoreo de salas síncronas y gestión de recursos académicos.
+              Monitoreo de salas síncronas y gestión de recursos académicos.
             </p>
           </div>
 
@@ -83,16 +82,6 @@ export default function CursoPage() {
             >
               <RefreshCcw className="w-3.5 h-3.5 text-slate-500" />
               <span>Sincronizar Aulas</span>
-            </button>
-
-            {/* Botón para abrir el Modal de Secciones */}
-            <button
-              type="button"
-              onClick={() => setIsSeccionModalOpen(true)}
-              className="inline-flex items-center space-x-1.5 px-3 py-2 border border-slate-300 text-slate-700 bg-white hover:bg-slate-50 rounded-lg text-xs font-medium shadow-2xs transition-colors cursor-pointer"
-            >
-              <Layers className="w-3.5 h-3.5 text-slate-500" />
-              <span>Secciones</span>
             </button>
 
             <button
@@ -154,31 +143,24 @@ export default function CursoPage() {
               key={curso.id}
               className="bg-white rounded-xl border border-slate-200 shadow-sm p-5 flex flex-col hover:shadow-md hover:border-blue-200 transition-all duration-200"
             >
-              {/* Encabezado de Tarjeta: Código/Aula y Estado */}
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-[11px] font-bold text-blue-700 tracking-wide uppercase bg-blue-50 px-2 py-1 rounded">
-                  {curso.codigo} • SECCIÓN {curso.seccion || curso.aula?.replace(/AULA|SECCIÓN/g, "").trim() || "123-ABC"}
-                </span>
+              {/* Encabezado con Título y Estado alineados */}
+              <div className="flex items-start justify-between gap-3 mb-4">
+                <h3 className="text-lg font-bold text-slate-800 leading-tight">
+                  {curso.asignatura}
+                </h3>
                 <span
-                  className={`inline-flex items-center px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider border ${
-                    curso.estado === "Activo"
+                  className={`inline-flex items-center px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider border shrink-0 ${curso.estado === "Activo"
                       ? "bg-emerald-50 text-emerald-600 border-emerald-100"
                       : "bg-amber-50 text-amber-600 border-amber-100"
-                  }`}
+                    }`}
                 >
                   <span
-                    className={`w-1.5 h-1.5 rounded-full mr-1.5 ${
-                      curso.estado === "Activo" ? "bg-emerald-500 animate-pulse" : "bg-amber-500"
-                    }`}
+                    className={`w-1.5 h-1.5 rounded-full mr-1.5 ${curso.estado === "Activo" ? "bg-emerald-500 animate-pulse" : "bg-amber-500"
+                      }`}
                   />
                   {curso.estado}
                 </span>
               </div>
-
-              {/* Título de la Materia */}
-              <h3 className="text-lg font-bold text-slate-800 mb-4 leading-tight">
-                {curso.asignatura}
-              </h3>
 
               {/* Información Administrativa */}
               <div className="space-y-2 mb-5">
@@ -241,6 +223,7 @@ export default function CursoPage() {
         )}
       </div>
 
+      {/* COMPONENTE MODAL DE REGISTRO */}
       <CursoRegistroModal
         isOpen={isModalOpen}
     onClose={() => {
@@ -250,11 +233,6 @@ export default function CursoPage() {
         onAddCourse={handleAddCourse}
     onUpdateCourse={handleUpdateCourse}
     courseToEdit={courseToEdit}
-      />
-
-      <SeccionesModal
-        isOpen={isSeccionModalOpen}
-        onClose={() => setIsSeccionModalOpen(false)}
       />
     </div>
   );

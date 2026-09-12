@@ -6,11 +6,12 @@
       "nombres": "Roberto Carlos",
       "dni": "41235678",
       "fechaNacimiento": "1988-11-05",
-      "correo": "r.morales@academia.edu.pe",
+      "correo": "admin@gmail.com",
+      "password": "admin123",
       "celular": "998877665",
       "carreraObjetivo": "Dirección Académica",
       "cicloVirtual": "Turno Mañana / Tarde",
-      "rol": "Admin",
+      "rol": "admin",
       "estado": "Activo"
     },
     {
@@ -20,10 +21,11 @@
       "dni": "45678912",
       "fechaNacimiento": "1990-03-12",
       "correo": "c.herrera@academia.edu.pe",
+      "password": "docente123",
       "celular": "976543210",
       "carreraObjetivo": "Cátedra de Álgebra",
       "cicloVirtual": "Todos los ciclos",
-      "rol": "Docente",
+      "rol": "docente",
       "estado": "Activo"
     },
     {
@@ -33,10 +35,11 @@
       "dni": "48923104",
       "fechaNacimiento": "1985-09-18",
       "correo": "m.paredes@academia.edu.pe",
+      "password": "docente123",
       "celular": "965412389",
       "carreraObjetivo": "Cátedra de Física",
       "cicloVirtual": "Todos los ciclos",
-      "rol": "Docente",
+      "rol": "docente",
       "estado": "Activo"
     },
     {
@@ -46,10 +49,11 @@
       "dni": "43219876",
       "fechaNacimiento": "1992-07-25",
       "correo": "e.torres@academia.edu.pe",
+      "password": "docente123",
       "celular": "934567890",
       "carreraObjetivo": "Cátedra de Biología",
       "cicloVirtual": "Todos los ciclos",
-      "rol": "Docente",
+      "rol": "docente",
       "estado": "Activo"
     },
     {
@@ -58,11 +62,12 @@
       "nombres": "Juan Carlos",
       "dni": "74839201",
       "fechaNacimiento": "2005-04-15",
-      "correo": "j.flores@academia.edu.pe",
+      "correo": "estudiante@gmail.com",
+      "password": "estudiante123",
       "celular": "987654321",
       "carreraObjetivo": "Medicina Humana (UNMSM)",
       "cicloVirtual": "123ABC",
-      "rol": "Estudiante",
+      "rol": "estudiante",
       "estado": "Activo"
     },
     {
@@ -72,10 +77,11 @@
       "dni": "76543210",
       "fechaNacimiento": "2006-08-22",
       "correo": "v.quispe@academia.edu.pe",
+      "password": "estudiante123",
       "celular": "912345678",
       "carreraObjetivo": "Ing. de Sistemas (UNI)",
       "cicloVirtual": "123ABC",
-      "rol": "Estudiante",
+      "rol": "estudiante",
       "estado": "Activo"
     },
     {
@@ -85,10 +91,11 @@
       "dni": "73214569",
       "fechaNacimiento": "2006-05-10",
       "correo": "l.gomez@academia.edu.pe",
+      "password": "estudiante123",
       "celular": "945612378",
       "carreraObjetivo": "Derecho (PUCP)",
       "cicloVirtual": "123ABC",
-      "rol": "Estudiante",
+      "rol": "estudiante",
       "estado": "Activo"
     }
   ],
@@ -116,8 +123,6 @@
   "courses": [
     {
       "id": "CRS-001",
-      "codigo": "MAT-101",
-      "aula": "AULA A-101",
       "asignatura": "Álgebra y Funciones",
       "area": "Ciencias Exactas (UNI / SM)",
       "docente": "Prof. Carmen Rosa Herrera",
@@ -129,8 +134,6 @@
     },
     {
       "id": "CRS-002",
-      "codigo": "FIS-202",
-      "aula": "AULA B-204",
       "asignatura": "Física Fundamental",
       "area": "Ciencias Exactas (UNI)",
       "docente": "Prof. Miguel Ángel Paredes",
@@ -142,8 +145,6 @@
     },
     {
       "id": "CRS-003",
-      "codigo": "BIO-301",
-      "aula": "AULA C-302",
       "asignatura": "Biología y Anatomía",
       "area": "Ciencias Médicas (UNMSM)",
       "docente": "Dra. Elena Sofía Torres",
