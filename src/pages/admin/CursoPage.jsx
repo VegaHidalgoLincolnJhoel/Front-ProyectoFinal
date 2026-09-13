@@ -226,13 +226,13 @@ export default function CursoPage() {
       {/* COMPONENTE MODAL DE REGISTRO */}
       <CursoRegistroModal
         isOpen={isModalOpen}
-    onClose={() => {
-      setIsModalOpen(false);
-      setCourseToEdit(null);
-    }}
+        onClose={() => {
+          setIsModalOpen(false);
+          setCourseToEdit(null);
+        }}
         onAddCourse={handleAddCourse}
-    onUpdateCourse={handleUpdateCourse}
-    courseToEdit={courseToEdit}
+        onUpdateCourse={handleUpdateCourse}
+        courseToEdit={courseToEdit}
       />
     </div>
   );

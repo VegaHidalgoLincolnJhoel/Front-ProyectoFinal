@@ -1,18 +1,43 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { X } from "lucide-react";
 
-export default function CursoRegistroModal({ isOpen, onClose, onAddCourse }) {
-  const [formData, setFormData] = useState({
+const emptyFormData = {
     asignatura: "",
     docente: "",
     codigo: "",
     aula: "",
-    horario: "Lun / Mié 08:00 - 10:00 hrs",
+    horario: "Lun / Mié",
+    horaInicio: "08:00",
+    horaFin: "10:00",
     area: "Ciencias Exactas",
     estado: "Activo",
     tipoSala: "zoom",
     repositorio: "drive.google.com"
-  });
+};
+
+const getFormData = (course) => {
+  if (!course) return { ...emptyFormData };
+
+  const timeRange = course.horario?.match(/(\d{2}:\d{2})\s*-\s*(\d{2}:\d{2})/);
+  const days = course.horario?.replace(/\s*\d{2}:\d{2}\s*-\s*\d{2}:\d{2}\s*hrs?\.?/i, "").trim();
+
+  return {
+    ...emptyFormData,
+    ...course,
+    codigo: course.codigo || "",
+    aula: course.aula || "",
+    horario: days || emptyFormData.horario,
+    horaInicio: timeRange?.[1] || emptyFormData.horaInicio,
+    horaFin: timeRange?.[2] || emptyFormData.horaFin
+  };
+};
+
+export default function CursoRegistroModal({ isOpen, onClose, onAddCourse, onUpdateCourse, courseToEdit }) {
+  const [formData, setFormData] = useState({ ...emptyFormData });
+
+  useEffect(() => {
+    if (isOpen) setFormData(getFormData(courseToEdit));
+  }, [courseToEdit, isOpen]);
 
   if (!isOpen) return null;
 
@@ -23,38 +48,31 @@ export default function CursoRegistroModal({ isOpen, onClose, onAddCourse }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!formData.asignatura || !formData.docente) return;
+    if (!formData.asignatura || !formData.docente || !formData.horario || !formData.horaInicio || !formData.horaFin) return;
 
-    // Crea el objeto del curso estructurado
-    const newCourse = {
-      id: Date.now(),
+    const course = {
+      id: courseToEdit?.id || Date.now(),
       ...formData,
+      horario: `${formData.horario} ${formData.horaInicio} - ${formData.horaFin} hrs`,
       codigo: formData.codigo.toUpperCase() || "CURSO-NEW",
       aula: formData.aula.toUpperCase() || "AULA-00"
     };
 
-    onAddCourse(newCourse);
+    if (courseToEdit) {
+      onUpdateCourse(course);
+    } else {
+      onAddCourse(course);
+    }
     onClose();
 
-    // Resetear formulario
-    setFormData({
-      asignatura: "",
-      docente: "",
-      codigo: "",
-      aula: "",
-      horario: "Lun / Mié 08:00 - 10:00 hrs",
-      area: "Ciencias Exactas",
-      estado: "Activo",
-      tipoSala: "zoom",
-      repositorio: "drive.google.com"
-    });
+    setFormData({ ...emptyFormData });
   };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-xs p-4">
       <div className="bg-white rounded-xl shadow-xl border border-slate-200 w-full max-w-md p-5 animate-in fade-in zoom-in-95 duration-150">
         <div className="flex items-center justify-between pb-3 border-b border-slate-100">
-          <h3 className="text-base font-bold text-slate-800">Registrar Nuevo Curso</h3>
+          <h3 className="text-base font-bold text-slate-800">{courseToEdit ? "Editar Curso" : "Registrar Nuevo Curso"}</h3>
           <button 
             type="button" 
             onClick={onClose} 
@@ -120,6 +138,43 @@ export default function CursoRegistroModal({ isOpen, onClose, onAddCourse }) {
             </div>
           </div>
 
+          <div className="grid grid-cols-3 gap-3">
+            <div>
+              <label className="block text-xs font-semibold text-slate-700 mb-1">Días de la semana *</label>
+              <input
+                type="text"
+                name="horario"
+                value={formData.horario}
+                onChange={handleChange}
+                placeholder="Lun / Mié"
+                required
+                className="w-full px-3 py-2 border border-slate-200 rounded-lg text-xs bg-slate-50 focus:bg-white focus:outline-hidden focus:border-[#1E3A8A] transition-all"
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-semibold text-slate-700 mb-1">Hora inicio *</label>
+              <input
+                type="time"
+                name="horaInicio"
+                value={formData.horaInicio}
+                onChange={handleChange}
+                required
+                className="w-full px-3 py-2 border border-slate-200 rounded-lg text-xs bg-slate-50 focus:bg-white focus:outline-hidden focus:border-[#1E3A8A] transition-all cursor-pointer"
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-semibold text-slate-700 mb-1">Hora fin *</label>
+              <input
+                type="time"
+                name="horaFin"
+                value={formData.horaFin}
+                onChange={handleChange}
+                required
+                className="w-full px-3 py-2 border border-slate-200 rounded-lg text-xs bg-slate-50 focus:bg-white focus:outline-hidden focus:border-[#1E3A8A] transition-all cursor-pointer"
+              />
+            </div>
+          </div>
+
           <div className="grid grid-cols-2 gap-3">
             <div>
               <label className="block text-xs font-semibold text-slate-700 mb-1">
@@ -163,7 +218,7 @@ export default function CursoRegistroModal({ isOpen, onClose, onAddCourse }) {
               type="submit"
               className="px-4 py-2 text-xs font-semibold text-white bg-[#1E3A8A] hover:bg-blue-800 rounded-lg transition-colors cursor-pointer"
             >
-              Guardar Curso
+              {courseToEdit ? "Guardar Cambios" : "Guardar Curso"}
             </button>
           </div>
         </form>
