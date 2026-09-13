@@ -1,5 +1,4 @@
 import React from 'react';
-import '../views/Styles/SidebarStyle.css';
 
 interface SidebarProps {
   vistaActual: string;
