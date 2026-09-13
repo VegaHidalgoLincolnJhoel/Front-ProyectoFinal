@@ -10,6 +10,7 @@ import StudentDashboardPage from "./pages/student/StudentDashboardPage";
 import ControlAsistenciasPage from "./pages/admin/ControIncidenciasPage";
 import HorariosSalonesPage from "./pages/admin/HorariosSalonesPage";
 
+import ProfesorLayout from "./components/ProfesorLayout";
 import InterfazProfesorPage from "./pages/profesor/InterfazProfesorPage";
 import CursosProfesorPage from "./pages/profesor/CursosPage";
 import AsistenciaProfesorPage from "./pages/profesor/AsistenciaPage";

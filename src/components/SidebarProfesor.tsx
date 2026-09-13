@@ -1,76 +1,72 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
-interface SidebarProps {
-  vistaActual: string;
-  setVistaActual: (vista: string) => void;
-}
-
-export const Sidebar: React.FC<SidebarProps> = ({ vistaActual, setVistaActual }) => {
+export default function SidebarProfesor() {
   return (
-    <aside className="sidebar-container">
+    <aside className="w-64 bg-slate-900 border-r border-slate-800 flex flex-col h-full">
       {/* Encabezado del Menú */}
-      <div className="sidebar-brand">
-        <h2>AM Academy Manager</h2>
-        <p>Administrador del Sistema</p>
+      <div className="p-6 border-b border-slate-800">
+        <h2 className="text-xl font-bold text-white">AM Academy</h2>
+        <p className="text-xs text-slate-400">Panel de Docente</p>
       </div>
 
-      <hr className="sidebar-divider" />
-
       {/* Menú de Navegación Principal */}
-      <nav className="sidebar-menu">
-        <ul>
-          <li>
-            <button
-              className={`menu-btn ${vistaActual === 'principal' ? 'active' : ''}`}
-              onClick={() => setVistaActual('principal')}
-            >
-              Principal
-            </button>
-          </li>
-          <li>
-            <button
-              className={`menu-btn ${vistaActual === 'usuarios' ? 'active' : ''}`}
-              onClick={() => setVistaActual('usuarios')}
-            >
-              Usuarios
-            </button>
-          </li>
-          <li>
-            <button
-              className={`menu-btn ${vistaActual === 'cursos' ? 'active' : ''}`}
-              onClick={() => setVistaActual('cursos')}
-            >
-              Cursos
-            </button>
-          </li>
-        </ul>
+      <nav className="flex-1 p-4 space-y-2">
+        <NavLink
+          to="/docente/panel"
+          className={({ isActive }) =>
+            `block px-4 py-2.5 rounded-lg text-sm font-medium transition-colors ${
+              isActive ? 'bg-indigo-600 text-white' : 'text-slate-400 hover:bg-slate-800 hover:text-white'
+            }`
+          }
+        >
+          Panel Principal
+        </NavLink>
 
-        <hr className="sidebar-divider" />
+        <NavLink
+          to="/docente/cursos"
+          className={({ isActive }) =>
+            `block px-4 py-2.5 rounded-lg text-sm font-medium transition-colors ${
+              isActive ? 'bg-indigo-600 text-white' : 'text-slate-400 hover:bg-slate-800 hover:text-white'
+            }`
+          }
+        >
+          Cursos
+        </NavLink>
 
-        <ul>
-          <li>
-            <button
-              className={`menu-btn ${vistaActual === 'programacion' ? 'active' : ''}`}
-              onClick={() => setVistaActual('programacion')}
-            >
-              Programación
-            </button>
-          </li>
-        </ul>
+        <NavLink
+          to="/docente/asistencia"
+          className={({ isActive }) =>
+            `block px-4 py-2.5 rounded-lg text-sm font-medium transition-colors ${
+              isActive ? 'bg-indigo-600 text-white' : 'text-slate-400 hover:bg-slate-800 hover:text-white'
+            }`
+          }
+        >
+          Asistencia
+        </NavLink>
 
-        <hr className="sidebar-divider" />
+        <NavLink
+          to="/docente/programacion"
+          className={({ isActive }) =>
+            `block px-4 py-2.5 rounded-lg text-sm font-medium transition-colors ${
+              isActive ? 'bg-indigo-600 text-white' : 'text-slate-400 hover:bg-slate-800 hover:text-white'
+            }`
+          }
+        >
+          Programación
+        </NavLink>
 
-        <ul>
-          <li>
-            <button
-              className={`menu-btn ${vistaActual === 'perfil' ? 'active' : ''}`}
-              onClick={() => setVistaActual('perfil')}
-            >
-              Perfil
-            </button>
-          </li>
-        </ul>
+        <NavLink
+          to="/docente/perfil"
+          className={({ isActive }) =>
+            `block px-4 py-2.5 rounded-lg text-sm font-medium transition-colors ${
+              isActive ? 'bg-indigo-600 text-white' : 'text-slate-400 hover:bg-slate-800 hover:text-white'
+            }`
+          }
+        >
+          Perfil
+        </NavLink>
       </nav>
     </aside>
   );
-};
+}

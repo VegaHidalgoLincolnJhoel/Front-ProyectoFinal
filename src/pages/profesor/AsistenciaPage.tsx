@@ -46,102 +46,108 @@ export default function AsistenciaView() {
   };
 
   return (
-    <div className="principal-dashboard">
-      <div className="welcome-header">
-        <h2>Control de Asistencia</h2>
-        <p>Selecciona un curso para tomar lista de los estudiantes.</p>
+    <div className="space-y-6 text-slate-100">
+      <div className="bg-slate-900 p-6 rounded-xl border border-slate-800 shadow-sm">
+        <h2 className="text-xl font-bold text-white">Control de Asistencia</h2>
+        <p className="text-xs text-slate-400 mt-1">Selecciona un curso para tomar lista de los estudiantes.</p>
       </div>
 
       {!selectedCourse ? (
-        <div className="metrics-grid">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {initialCourses.map((course) => (
             <div
               key={course.id}
-              className="card"
-              style={{ cursor: 'pointer', transition: 'transform 0.2s' }}
+              className="bg-slate-900 p-5 rounded-xl border border-slate-800 hover:border-slate-700 transition-all cursor-pointer flex flex-col justify-between shadow-sm"
               onClick={() => setSelectedCourse(course)}
             >
-              <h3>{course.title}</h3>
-              <p><small>{course.code}</small></p>
-              <span style={{ display: 'block', marginTop: '10px' }}>{course.professor}</span>
-              <button className="btn-action" style={{ marginTop: '16px' }}>
+              <div>
+                <h3 className="font-bold text-white text-sm">{course.title}</h3>
+                <p className="mt-1"><span className="text-[11px] font-mono bg-slate-800 px-2 py-0.5 rounded border border-slate-700 text-slate-300">{course.code}</span></p>
+                <span className="block text-xs text-slate-400 mt-3">{course.professor}</span>
+              </div>
+              <button
+                type="button"
+                className="mt-5 w-full py-2 px-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-xs font-semibold transition-colors cursor-pointer shadow-sm"
+              >
                 Tomar Asistencia
               </button>
             </div>
           ))}
         </div>
       ) : (
-        <div className="card">
-          <div className="card-header">
+        <div className="bg-slate-900 rounded-xl border border-slate-800 shadow-sm overflow-hidden">
+          <div className="p-6 border-b border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
-              <h3>{selectedCourse.title}</h3>
-              <small>{selectedCourse.code} — {selectedCourse.professor}</small>
+              <h3 className="text-lg font-bold text-white">{selectedCourse.title}</h3>
+              <p className="text-xs text-slate-400 mt-1">
+                <span className="font-mono text-slate-300">{selectedCourse.code}</span> — {selectedCourse.professor}
+              </p>
             </div>
-            <button className="logout-btn" onClick={() => setSelectedCourse(null)}>
+            <button
+              type="button"
+              onClick={() => setSelectedCourse(null)}
+              className="inline-flex items-center text-xs font-semibold text-slate-400 hover:text-white transition-colors cursor-pointer bg-slate-800 px-3.5 py-2 rounded-lg border border-slate-700 self-start sm:self-auto"
+            >
               ← Volver a Cursos
             </button>
           </div>
 
-          <table style={{ width: '100%', borderCollapse: 'collapse', marginTop: '16px', tableLayout: 'fixed' }}>
-            <thead>
-              <tr style={{ borderBottom: '2px solid #e2e8f0', textAlign: 'left' }}>
-                <th style={{ padding: '12px', width: '20%' }}>Código</th>
-                <th style={{ padding: '12px', width: '35%' }}>Estudiante</th>
-                <th style={{ padding: '12px', width: '25%', textAlign: 'center' }}>Asistencia</th>
-                <th style={{ padding: '12px', width: '20%', textAlign: 'center' }}>Estado</th>
-              </tr>
-            </thead>
-            <tbody>
-              {students.map((student) => (
-                <tr key={student.id} style={{ borderBottom: '1px solid #f1f5f9' }}>
-                  <td style={{ padding: '12px' }}>{student.code}</td>
-                  <td style={{ padding: '12px' }}><strong>{student.name}</strong></td>
-                  
-                  {/* Trigger / Switch Interactivo más grande */}
-                  <td style={{ padding: '12px', textAlign: 'center' }}>
-                    <button
-                      onClick={() => toggleAttendance(student.id)}
-                      style={{
-                        width: '56px',
-                        height: '28px',
-                        borderRadius: '14px',
-                        backgroundColor: student.attended ? '#10b981' : '#cbd5e1',
-                        border: 'none',
-                        cursor: 'pointer',
-                        position: 'relative',
-                        transition: 'background-color 0.2s ease',
-                        padding: '2px',
-                        display: 'inline-flex',
-                        alignItems: 'center'
-                      }}
-                    >
-                      <div
-                        style={{
-                          width: '24px',
-                          height: '24px',
-                          borderRadius: '50%',
-                          backgroundColor: '#ffffff',
-                          transform: student.attended ? 'translateX(28px)' : 'translateX(0px)',
-                          transition: 'transform 0.2s ease',
-                          boxShadow: '0 2px 4px rgba(0,0,0,0.2)'
-                        }}
-                      />
-                    </button>
-                  </td>
-
-                  {/* Estado fijado para evitar saltos de layout */}
-                  <td style={{ padding: '12px', textAlign: 'center' }}>
-                    <span 
-                      className={student.attended ? 'positive' : 'negative'}
-                      style={{ display: 'inline-block', width: '90px' }}
-                    >
-                      {student.attended ? 'Sí, asistió' : 'No asistió'}
-                    </span>
-                  </td>
+          <div className="overflow-x-auto">
+            <table className="w-full text-left border-collapse table-fixed">
+              <thead>
+                <tr className="border-b border-slate-800 text-[11px] uppercase tracking-wider text-slate-400 bg-slate-950/40">
+                  <th className="p-4 w-1/5">Código</th>
+                  <th className="p-4 w-[35%]">Estudiante</th>
+                  <th className="p-4 w-[25%] text-center">Asistencia</th>
+                  <th className="p-4 w-1/5 text-center">Estado</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody className="divide-y divide-slate-800/60">
+                {students.map((student) => (
+                  <tr key={student.id} className="hover:bg-slate-800/30 transition-colors">
+                    <td className="p-4">
+                      <span className="text-xs font-mono bg-slate-800 px-2 py-1 rounded border border-slate-700 text-slate-300">
+                        {student.code}
+                      </span>
+                    </td>
+                    <td className="p-4">
+                      <strong className="text-xs font-semibold text-white">{student.name}</strong>
+                    </td>
+                    
+                    {/* Trigger / Switch Interactivo */}
+                    <td className="p-4 text-center">
+                      <button
+                        type="button"
+                        onClick={() => toggleAttendance(student.id)}
+                        className={`w-14 h-7 rounded-full border-none cursor-pointer relative transition-colors duration-200 p-0.5 inline-flex items-center shadow-inner ${
+                          student.attended ? 'bg-emerald-600' : 'bg-slate-700'
+                        }`}
+                      >
+                        <div
+                          className={`w-6 h-6 rounded-full bg-white transition-transform duration-200 shadow-md ${
+                            student.attended ? 'translate-x-7' : 'translate-x-0'
+                          }`}
+                        />
+                      </button>
+                    </td>
+
+                    {/* Estado fijado para evitar saltos de layout */}
+                    <td className="p-4 text-center">
+                      <span 
+                        className={`inline-block w-[90px] text-center px-2 py-1 rounded-md text-[11px] font-semibold border ${
+                          student.attended 
+                            ? 'bg-emerald-950/60 text-emerald-400 border-emerald-800/50' 
+                            : 'bg-rose-950/60 text-rose-400 border-rose-800/50'
+                        }`}
+                      >
+                        {student.attended ? 'Sí, asistió' : 'No asistió'}
+                      </span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       )}
     </div>

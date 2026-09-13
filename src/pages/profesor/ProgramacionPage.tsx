@@ -42,64 +42,61 @@ export default function ProgramacionView() {
   const days = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes'];
 
   return (
-    <div className="principal-dashboard">
-      <div className="welcome-header">
-        <h2>Programación Académica</h2>
-        <p>Distribución de horario semanal (4 horas semanales divididas en 2 bloques de 2 horas).</p>
+    <div className="space-y-6 text-slate-100">
+      
+      {/* Header */}
+      <div className="bg-slate-900 p-6 rounded-xl border border-slate-800 shadow-sm">
+        <h2 className="text-xl font-bold text-white">Programación Académica</h2>
+        <p className="text-xs text-slate-400 mt-1">Distribución de horario semanal (4 horas semanales divididas en 2 bloques de 2 horas).</p>
       </div>
 
-      <div className="card" style={{ overflowX: 'auto' }}>
-        <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'center' }}>
-          <thead>
-            <tr style={{ background: '#f8fafc', borderBottom: '2px solid #e2e8f0' }}>
-              <th style={{ padding: '14px', borderRight: '1px solid #e2e8f0' }}>Horario</th>
-              {days.map((day) => (
-                <th key={day} style={{ padding: '14px', borderRight: '1px solid #e2e8f0' }}>
-                  {day}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {scheduleData.map((slot, index) => (
-              <tr key={index} style={{ borderBottom: '1px solid #e2e8f0' }}>
-                <td style={{ padding: '14px', fontWeight: 'bold', background: '#f8fafc', borderRight: '1px solid #e2e8f0' }}>
-                  {slot.time}
-                </td>
-                {days.map((day) => {
-                  const classItem = slot.days[day];
-                  return (
-                    <td key={day} style={{ padding: '12px', borderRight: '1px solid #e2e8f0', width: '18%' }}>
-                      {classItem ? (
-                        <div
-                          style={{
-                            background: '#eff6ff',
-                            borderLeft: '4px solid #2563eb',
-                            padding: '10px',
-                            borderRadius: '6px',
-                            textAlign: 'left',
-                          }}
-                        >
-                          <strong style={{ fontSize: '0.85rem', color: '#1e3a8a', display: 'block' }}>
-                            {classItem.course}
-                          </strong>
-                          <small style={{ color: '#64748b', display: 'block' }}>
-                            {classItem.code} — {classItem.room}
-                          </small>
-                          <span style={{ fontSize: '0.75rem', color: '#2563eb', fontWeight: 600 }}>
-                            Bloque 2 hrs
-                          </span>
-                        </div>
-                      ) : (
-                        <span style={{ color: '#cbd5e1' }}>—</span>
-                      )}
-                    </td>
-                  );
-                })}
+      {/* Tabla contenedora */}
+      <div className="bg-slate-900 rounded-xl border border-slate-800 shadow-sm overflow-hidden">
+        <div className="overflow-x-auto">
+          <table className="w-full text-center border-collapse min-w-[700px]">
+            <thead>
+              <tr className="border-b border-slate-800 text-[11px] uppercase tracking-wider text-slate-400 bg-slate-950/40">
+                <th className="p-4 border-r border-slate-800 w-[16%]">Horario</th>
+                {days.map((day) => (
+                  <th key={day} className="p-4 border-r border-slate-800 last:border-r-0 w-[16.8%]">
+                    {day}
+                  </th>
+                ))}
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody className="divide-y divide-slate-800/60 text-xs">
+              {scheduleData.map((slot, index) => (
+                <tr key={index} className="hover:bg-slate-800/20 transition-colors">
+                  <td className="p-4 font-bold font-mono text-slate-300 bg-slate-950/20 border-r border-slate-800">
+                    {slot.time}
+                  </td>
+                  {days.map((day) => {
+                    const classItem = slot.days[day];
+                    return (
+                      <td key={day} className="p-3 border-r border-slate-800 last:border-r-0 align-middle">
+                        {classItem ? (
+                          <div className="bg-indigo-950/50 border-l-4 border-indigo-500 p-3 rounded-lg text-left shadow-sm border border-indigo-800/40 space-y-1">
+                            <strong className="text-xs font-bold text-white block leading-snug">
+                              {classItem.course}
+                            </strong>
+                            <small className="text-[11px] text-slate-400 block font-mono">
+                              {classItem.code} — {classItem.room}
+                            </small>
+                            <span className="inline-block text-[10px] font-bold text-indigo-400 bg-indigo-950/80 px-2 py-0.5 rounded border border-indigo-800/60 mt-1">
+                              Bloque 2 hrs
+                            </span>
+                          </div>
+                        ) : (
+                          <span className="text-slate-600 font-semibold">—</span>
+                        )}
+                      </td>
+                    );
+                  })}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );
