@@ -63,9 +63,6 @@ export default function CursoPage() {
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
           <div>
             <div className="flex items-center space-x-2">
-              <span className="px-2 py-0.5 rounded bg-blue-100 text-[#1E3A8A] text-xs font-bold uppercase tracking-wider">
-                Requerimiento SCRM-5
-              </span>
               <h2 className="text-xl font-bold text-slate-800">
                 Catálogo Institucional de Cursos Virtuales
               </h2>
@@ -76,14 +73,6 @@ export default function CursoPage() {
           </div>
 
           <div className="flex flex-wrap items-center gap-2">
-            <button
-              type="button"
-              className="inline-flex items-center space-x-1.5 px-3 py-2 border border-slate-300 text-slate-700 bg-white hover:bg-slate-50 rounded-lg text-xs font-medium shadow-2xs transition-colors cursor-pointer"
-            >
-              <RefreshCcw className="w-3.5 h-3.5 text-slate-500" />
-              <span>Sincronizar Aulas</span>
-            </button>
-
             <button
               type="button"
               onClick={() => setIsModalOpen(true)}
